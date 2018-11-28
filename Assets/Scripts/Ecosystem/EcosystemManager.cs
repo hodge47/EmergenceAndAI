@@ -37,5 +37,21 @@ public class EcosystemManager : MonoBehaviour {
             aHuman.AddComponent<Species>();
             humans.Add(aHuman.GetComponent<Species>());
         }
+        // Birds
+        for (int i = 0; i < maxBirds; i++)
+        {
+            GameObject aBird = new GameObject();
+            aBird.name = "A Human";
+            aBird.AddComponent<Species>();
+            humans.Add(aBird.GetComponent<Species>());
+        }
+        // Fish
+        for (int i = 0; i < maxHumans; i++)
+        {
+            GameObject aFish = new GameObject();
+            aFish.name = "A Human";
+            aFish.AddComponent<Species>();
+            humans.Add(aFish.GetComponent<Species>());
+        }
     }
 }
