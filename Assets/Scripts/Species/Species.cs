@@ -4,17 +4,48 @@ using UnityEngine;
 
 public class Species : MonoBehaviour {
 
-    protected string speciesName;   // Name of the species
-    protected float hunger;         // Hunger of the species
-    protected float health;         // Health of the species
-    protected bool breed;           // Can breed
-    protected bool stayMoving;      // Does the species need to stay moving?
-    protected bool isActive;        // Is the species active on the screen?
-    protected bool isAlive;         // Is the species dead?
+    // Ecosystem
+    public EcosystemManager ecosystem;
 
-	// Use this for initialization
-	void Start () {
-		
+    // Species properties
+    protected string speciesName = "No Name";   // Name of the species
+    protected float hunger = 0;                 // Hunger of the species
+    protected float health = 100;               // Health of the species
+    protected bool breed = false;               // Can breed
+    protected bool stayMoving = false;          // Does the species need to stay moving?
+    protected bool isActive = false;            // Is the species active on the screen?
+    protected bool isAlive = true;              // Is the species dead?
+
+    // Species movement properties
+    protected Vector2 originPosition;
+    protected Vector2 targetPosition = new Vector2(0,0);
+    protected float moveSpeed = 5f;
+
+    // Random from the EcosystemManager
+    protected System.Random random = EcosystemManager.random;
+
+    // This transform properties
+    protected RectTransform thisRectTransform;
+
+    // Canvas
+    protected Canvas canvas;
+    protected RectTransform canvasRectTransform;
+    protected float canvasWidth;
+    protected float canvasHeight;
+
+    // Use this for initialization
+    protected virtual void Start () {
+        // Get this transform properties
+        thisRectTransform = this.GetComponent<RectTransform>();
+        // Get the canvas
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        canvasRectTransform = canvas.GetComponent<RectTransform>();
+        canvasWidth = canvasRectTransform.rect.width;
+        canvasHeight = canvasRectTransform.rect.height;
+        // Set the origin of the screen
+        originPosition = new Vector2(0, 0);
+        // Create an initial target position
+        CreateNewTargetPosition();
 	}
 	
 	// Update is called once per frame
@@ -22,5 +53,13 @@ public class Species : MonoBehaviour {
 		
 	}
 
+    protected void CreateNewTargetPosition()
+    {
+        targetPosition = new Vector2(random.Next(-Mathf.RoundToInt(canvasWidth/2), Mathf.RoundToInt(canvasWidth/2)), random.Next(-Mathf.RoundToInt(canvasHeight/2), Mathf.RoundToInt(canvasHeight/2)));
+    }
 
+    protected virtual void Movement()
+    {
+        thisRectTransform.transform.position = Vector2.MoveTowards(thisRectTransform.transform.position, targetPosition, moveSpeed);
+    }
 }

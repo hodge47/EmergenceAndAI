@@ -1,15 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EcosystemManager : MonoBehaviour {
 
+    // Static variables - sloppy, will change later
+    [HideInInspector]
+    public static System.Random random;
+
+    // Simulation specifics
     public float simulationTime = 5; // Minutes
 
+    // Species prefabs
+    public GameObject fishPrefab;
+    public GameObject birdPrefab;
+    public GameObject humanPrefab;
+
     // Species objects
-    public List<Species> humans = new List<Species>();
-    public List<Species> birds = new List<Species>();
-    public List<Species> fish = new List<Species>();
+    public List<Human> humans = new List<Human>();
+    public List<Bird> birds = new List<Bird>();
+    public List<Fish> fish = new List<Fish>();
     // Species amounts
     private int maxHumans = 5;
     private int maxBirds = 15;
@@ -18,6 +29,7 @@ public class EcosystemManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        random = new System.Random();
         // Create object pool for all needed species
         PoolAllSpecies();
 	}
@@ -30,28 +42,27 @@ public class EcosystemManager : MonoBehaviour {
     private void PoolAllSpecies()
     {
         // Humans
-        for(int i = 0; i < maxHumans; i++)
+        for (int i = 0; i < maxHumans; i++)
         {
-            GameObject aHuman = new GameObject();
-            aHuman.name = "A Human";
-            aHuman.AddComponent<Species>();
-            humans.Add(aHuman.GetComponent<Species>());
+            GameObject aHuman = Instantiate(humanPrefab, GameObject.Find("Canvas").transform);
+            aHuman.name = "A_Human";
+            humans.Add(aHuman.GetComponent<Human>());
         }
         // Birds
         for (int i = 0; i < maxBirds; i++)
         {
-            GameObject aBird = new GameObject();
-            aBird.name = "A Human";
-            aBird.AddComponent<Species>();
-            humans.Add(aBird.GetComponent<Species>());
+            GameObject aBird = Instantiate(birdPrefab, GameObject.Find("Canvas").transform);
+            aBird.name = "A_Bird";
+            birds.Add(aBird.GetComponent<Bird>());
         }
         // Fish
-        for (int i = 0; i < maxHumans; i++)
+        for (int i = 0; i < maxFish; i++)
         {
-            GameObject aFish = new GameObject();
-            aFish.name = "A Human";
-            aFish.AddComponent<Species>();
-            humans.Add(aFish.GetComponent<Species>());
+            GameObject aFish = Instantiate(fishPrefab, GameObject.Find("Canvas").transform);
+            aFish.name = "A_Fish";
+            fish.Add(aFish.GetComponent<Fish>());
         }
+        
+        // 
     }
 }
