@@ -23,13 +23,24 @@ public class EcosystemManager : MonoBehaviour {
     public List<Fish> fish = new List<Fish>();
     // Species amounts
     private int maxHumans = 5;
-    private int maxBirds = 15;
+    private int maxBirds = 7;
     private int maxFish = 25;
     private int minSpecies = 2;
+
+    // Canvas
+    private Canvas canvas;
+    private RectTransform canvasRectTransform;
+    private float canvasWidth;
+    private float canvasHeight;
 
 	// Use this for initialization
 	void Start () {
         random = new System.Random();
+        // Get the canvas
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        canvasRectTransform = canvas.GetComponent<RectTransform>();
+        canvasWidth = canvasRectTransform.rect.width;
+        canvasHeight = canvasRectTransform.rect.height;
         // Create object pool for all needed species
         PoolAllSpecies();
 	}

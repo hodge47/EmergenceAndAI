@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224559934568356270}
   - component: {fileID: 222280213943171292}
   - component: {fileID: 114748527581946448}
-  - component: {fileID: 114487591974817162}
+  - component: {fileID: 114347103394860784}
   m_Layer: 5
   m_Name: Human
   m_TagString: Untagged
@@ -29,7 +29,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114487591974817162
+--- !u!114 &114347103394860784
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,10 +37,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1640518837692026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffd528e59ea8a2d45adc90bb4c64487c, type: 3}
+  m_Script: {fileID: 11500000, guid: eef4af4799b98ee4bb0f91e440f72ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ecosystem: {fileID: 0}
+  speciesName: No Name
 --- !u!114 &114748527581946448
 MonoBehaviour:
   m_ObjectHideFlags: 1

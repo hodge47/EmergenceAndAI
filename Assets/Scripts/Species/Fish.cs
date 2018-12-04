@@ -15,7 +15,7 @@ public class Fish : Species {
         // Species Specific Start()
         speciesName = "Fish";
         stayMoving = true;
-        moveSpeed = 0.75f;
+        moveSpeed = 0.7f;
         // Create new target for fish
         CreateNewTargetForFish();
     }

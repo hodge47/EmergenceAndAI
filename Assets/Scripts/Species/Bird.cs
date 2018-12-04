@@ -27,7 +27,7 @@ public class Bird : Species {
         // Move the fish around in the pond
         Movement();
         // Predator Avoidance
-        PredatorAvoidance();
+        //PredatorAvoidance();
     }
 
     protected void CreateNewTargetForBird()

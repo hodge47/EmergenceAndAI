@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Species : MonoBehaviour {
 
-    // Ecosystem
-    public EcosystemManager ecosystem;
-
     // Species properties
-    protected string speciesName = "No Name";   // Name of the species
+    public string speciesName = "No Name";   // Name of the species
     protected float hunger = 0;                 // Hunger of the species
     protected float health = 100;               // Health of the species
     protected bool breed = false;               // Can breed
     protected bool stayMoving = false;          // Does the species need to stay moving?
     protected bool isActive = false;            // Is the species active on the screen?
     protected bool isAlive = true;              // Is the species dead?
+    protected Vector2 home = new Vector2(0,0);
 
     // Species movement properties
     protected Vector2 originPosition;
