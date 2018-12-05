@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fish : Species {
 
     // Movement - fish specific
-    float radiusOfPond = 200;
+    float radiusOfPond = 600;
 
     // Use this for initialization
     protected override void Start()
@@ -28,7 +28,7 @@ public class Fish : Species {
 
     protected void CreateNewTargetForFish()
     {
-        Vector2 _targetPosition = new Vector2(random.Next(-(int)radiusOfPond, (int)radiusOfPond), random.Next(-(int)radiusOfPond, (int)radiusOfPond));
+        Vector2 _targetPosition = new Vector2(random.Next(-(int)EcosystemManager.radiusOfPond, (int)EcosystemManager.radiusOfPond), random.Next(-(int)EcosystemManager.radiusOfPond, (int)EcosystemManager.radiusOfPond));
         targetPosition = _targetPosition;
     }
 
