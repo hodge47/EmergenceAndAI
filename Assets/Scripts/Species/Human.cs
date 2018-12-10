@@ -76,6 +76,8 @@ public class Human : Species {
 
     protected override void Movement()
     {
+        base.Movement();
+
         if (thisRectTransform.anchoredPosition != targetPosition && canCatchFish == false)
         {
             thisRectTransform.anchoredPosition = Vector2.MoveTowards(thisRectTransform.anchoredPosition, targetPosition, moveSpeed);
@@ -87,7 +89,6 @@ public class Human : Species {
             if (thisRectTransform.anchoredPosition == home)
             {
                 canCatchFish = false;
-                Debug.Log("We are at home");
                 if (arrivedAtHome == false)
                 {
                     arrivedAtHome = true;
@@ -108,10 +109,9 @@ public class Human : Species {
     {
         if (canCatchFish)
         {
-            _collision.transform.gameObject.SetActive(false);
+            _collision.GetComponent<Fish>().KillSpecies();
             canCatchFish = false;
             CreateNewTargetForHuman("home");
-            Debug.Log("A fish has been caught!");
         }
     }
 

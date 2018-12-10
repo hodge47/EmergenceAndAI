@@ -23,7 +23,11 @@ public class Fish : Species {
     // Update is called once per frame
     void FixedUpdate () {
         // Move the fish around in the pond
-        Movement();
+        if (isAlive)
+        {
+            Movement();
+        }
+        
 	}
 
     protected void CreateNewTargetForFish()
@@ -34,6 +38,8 @@ public class Fish : Species {
 
     protected override void Movement()
     {
+        base.Movement();
+
         if(thisRectTransform.anchoredPosition != targetPosition)
         {
             thisRectTransform.anchoredPosition = Vector2.MoveTowards(thisRectTransform.anchoredPosition, targetPosition, moveSpeed);
@@ -41,5 +47,13 @@ public class Fish : Species {
         {
             CreateNewTargetForFish();
         }
+    }
+
+    public override void ResurrectSpecies()
+    {
+        base.ResurrectSpecies();
+
+        thisRectTransform.anchoredPosition = new Vector2(random.Next(-(int)EcosystemManager.radiusOfPond, (int)EcosystemManager.radiusOfPond), random.Next(-(int)EcosystemManager.radiusOfPond, (int)EcosystemManager.radiusOfPond));
+        CreateNewTargetForFish();
     }
 }

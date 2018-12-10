@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Species : MonoBehaviour {
-
+    // Public properties
+    public EcosystemManager ecosystemManager;
+    public bool isAlive = true;                 // Is the species dead?
     // Species properties
-    public string speciesName = "No Name";   // Name of the species
+    public string speciesName = "No Name";      // Name of the species
     protected float hunger = 0;                 // Hunger of the species
     protected float health = 100;               // Health of the species
     protected bool breed = false;               // Can breed
     protected bool stayMoving = false;          // Does the species need to stay moving?
     protected bool isActive = false;            // Is the species active on the screen?
-    protected bool isAlive = true;              // Is the species dead?
     protected Vector2 home = new Vector2(0,0);
 
     // Species movement properties
@@ -58,6 +60,23 @@ public class Species : MonoBehaviour {
 
     protected virtual void Movement()
     {
-        thisRectTransform.transform.position = Vector2.MoveTowards(thisRectTransform.transform.position, targetPosition, moveSpeed);
+        // Look at target position - used for all species
+        Vector3 _dir = targetPosition - thisRectTransform.anchoredPosition;
+        float _angle = Mathf.Atan2(_dir.y, _dir.x) * Mathf.Rad2Deg;
+        this.transform.rotation = Quaternion.AngleAxis(_angle, Vector3.forward);
+    }
+
+    // Fish only 
+    public void KillSpecies()
+    {
+        isAlive = false;
+        this.GetComponent<Image>().enabled = false;
+    }
+
+    // Fish only
+    public virtual void ResurrectSpecies()
+    {
+        isAlive = true;
+        this.GetComponent<Image>().enabled = true;
     }
 }
